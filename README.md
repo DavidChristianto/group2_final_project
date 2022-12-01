@@ -52,7 +52,7 @@ To deploy the app to the App development platform we can use railway with the fo
 7. Click `Deploy New`
 
 ## Link to Railway 
-https://group2midtermproject-production.up.railway.app/
+https://web-production-19b0.up.railway.app/
 
 
 
