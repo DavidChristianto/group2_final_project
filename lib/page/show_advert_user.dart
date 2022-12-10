@@ -85,15 +85,16 @@ class _Show_advert_user_state extends State<Show_advert_user> {
                         Text(
                             "${snapshot.data![index].fields.title}",
                             style: const TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
                             ),
                         ),
                             Text(
                                 "${snapshot.data![index].fields.description}",
                                 style: const TextStyle(
+                                    color: Colors.black,
                                     fontSize: 18.0,
-                                    fontWeight: FontWeight.bold,
                                 ),
                             ),
                         ],
