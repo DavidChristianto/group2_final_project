@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ariculture/drawer.dart';
+import 'package:ariculture/login.dart';
+import 'package:ariculture/register.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:ariculture/account/login.dart';
@@ -75,6 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
+      drawer: drawer(),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
