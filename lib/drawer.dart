@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ariculture/main.dart';
 import 'package:ariculture/page/show_advert_user.dart';
+import 'package:ariculture/page/advert_create.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 
@@ -18,7 +19,7 @@ class drawer extends StatelessWidget {
         children: [
           // Adding clickable menu
           ListTile(
-            title: const Text('counter_7'),
+            title: const Text('Account'),
             onTap: () {
               // Routing the menu to the main page
               Navigator.pushReplacement(
@@ -34,6 +35,16 @@ class drawer extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const Show_advert_user()),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('Create Ad'),
+            onTap: () {
+              // Routing the menu to the form page
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const MyFormPage()),
               );
             },
           ),

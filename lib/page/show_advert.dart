@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:ariculture/model/advert.dart';
 import 'package:ariculture/drawer.dart';
 
-class Show_advert_user extends StatefulWidget {
-    const Show_advert_user({super.key});
+class show_advert extends StatefulWidget {
+    const show_advert({super.key});
 
     @override
-    State<Show_advert_user> createState() => _Show_advert_user_state();
+    State<show_advert> createState() => _show_advert();
 }
 
-class _Show_advert_user_state extends State<Show_advert_user> {
+class _show_advert extends State<show_advert> {
     Future<List<Advert>> fetchAdvert() async {
-        var url = Uri.parse('https://web-production-19b0.up.railway.app/advertisement/json/');
+        var url = Uri.parse('https://web-production-19b0.up.railway.app/json/');
         var response = await http.get(
         url,
         headers: {
@@ -45,6 +45,9 @@ class _Show_advert_user_state extends State<Show_advert_user> {
             body: FutureBuilder(
                 future: fetchAdvert(),
                  builder: (context, AsyncSnapshot snapshot){
+          if (snapshot.hasError) {
+            return Text(snapshot.error.toString());
+          }
 
           if (snapshot.data == null) {
             return const Center(child: CircularProgressIndicator());
