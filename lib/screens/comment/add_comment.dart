@@ -1,8 +1,9 @@
+import 'package:ariculture/screens/comment/display_feedback.dart';
 import 'package:flutter/material.dart';
-import 'package:ariculture/screens/comment/show_comment.dart';
 import 'package:ariculture/screens/home_screen.dart';
 import 'package:ariculture/screens/navpage.dart';
-
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 class AddCommentPage extends StatefulWidget {
   const AddCommentPage({super.key});
@@ -12,11 +13,10 @@ class AddCommentPage extends StatefulWidget {
 }
 
 class _AddCommentPageState extends State<AddCommentPage> {
-
   final _formKey = GlobalKey<FormState>();
   String name = "";
   String _reccomendation = "";
-  DateTime _date= DateTime.now();
+  DateTime _date = DateTime.now();
 
   final _controllername = TextEditingController();
   final _controllerreccomendation = TextEditingController();
@@ -25,17 +25,17 @@ class _AddCommentPageState extends State<AddCommentPage> {
     _controllername.clear();
     _controllerreccomendation.clear();
   }
-  
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add Reccomendation'),
         backgroundColor: Colors.lightGreen.shade300,
       ),
-  // Form 
-    backgroundColor: Colors.lightGreen.shade100,
+      // Form
+      backgroundColor: Colors.lightGreen.shade100,
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -43,7 +43,6 @@ class _AddCommentPageState extends State<AddCommentPage> {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
-
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
@@ -74,7 +73,6 @@ class _AddCommentPageState extends State<AddCommentPage> {
                     },
                   ),
                 ),
-
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
@@ -87,7 +85,6 @@ class _AddCommentPageState extends State<AddCommentPage> {
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                     ),
-
                     onChanged: (String? value) {
                       setState(() {
                         _reccomendation = value!;
@@ -98,10 +95,7 @@ class _AddCommentPageState extends State<AddCommentPage> {
                         _reccomendation = value!;
                       });
                     },
-                    
                     validator: (String? value) {
-
-                      
                       if (value == null || value.isEmpty) {
                         return 'you need to fill this';
                       }
@@ -110,19 +104,21 @@ class _AddCommentPageState extends State<AddCommentPage> {
                     },
                   ),
                 ),
-
-                
-
                 TextButton(
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.black54),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      showcomment(name, _reccomendation,_date);
+                      final response = await request.post(
+                          'https://web-production-19b0.up.railway.app/news/save_review/',
+                          {
+                            'name': name,
+                            'review': _reccomendation,
+
+                          });
                       clearText();
                     }
-                    
                   },
                   child: const Text(
                     "Send",

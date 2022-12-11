@@ -20,7 +20,7 @@ class _DisplayFeedbackState extends State<DisplayFeedbackPage> {
     return Scaffold(
       backgroundColor: Colors.lightGreen.shade100,
       appBar: AppBar(
-        title: const Text('Reccomendation Topic from the website'),
+        title: const Text('Reccomendation Topic'),
         backgroundColor: Colors.lightGreen.shade300,
       ),
       body: FutureBuilder(

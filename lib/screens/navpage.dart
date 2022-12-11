@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ariculture/screens/comment/display_feedback.dart';
 import 'package:ariculture/screens/home_screen.dart';
-import 'package:ariculture/screens/comment/show_comment.dart';
+
 import 'package:ariculture/screens/comment/add_comment.dart';
 
 class MainPage extends StatefulWidget {
@@ -22,9 +22,9 @@ class _MainPageState extends State<MainPage> {
 
   List pages = [
     HomeScreen(),
-    DisplayFeedbackPage(),
     AddCommentPage(),
-    ShowCommentPage()
+    DisplayFeedbackPage(),
+    
   ];
 
 
@@ -36,7 +36,7 @@ class _MainPageState extends State<MainPage> {
         unselectedFontSize: 0,
         selectedFontSize: 0,
         type: BottomNavigationBarType.shifting,
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.transparent,
         onTap: onTap,
         currentIndex: currentIndex,
         selectedItemColor: Colors.black,
@@ -47,9 +47,8 @@ class _MainPageState extends State<MainPage> {
 
         items: [
           BottomNavigationBarItem(label:"Home",icon: Icon(Icons.home)),
+          BottomNavigationBarItem(label:"Add", icon: Icon(Icons.add_comment)), 
           BottomNavigationBarItem(label:"Previous Comments", icon: Icon(Icons.comment)),
-          BottomNavigationBarItem(label:"Add", icon: Icon(Icons.add_comment)),
-          BottomNavigationBarItem(label:"New Comments", icon: Icon(Icons.comment_bank_sharp)),
         ]),
     );  }
 }
