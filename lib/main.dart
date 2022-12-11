@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:ariculture/login.dart';
-import 'package:ariculture/register.dart';
+import 'package:ariculture/account/login.dart';
+import 'package:ariculture/account/register.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:ariculture/actual.dart';
+
+String user = '';
+Map <String, String> userMap = {};
 
 
 void main() {
@@ -22,10 +28,10 @@ class MyApp extends StatelessWidget {
             child: MaterialApp(
                 title: 'Ariculture Home Page',
                 theme: ThemeData(
-                    primarySwatch: Colors.blue,
-                    brightness: Brightness.dark,
+                    primarySwatch: Colors.green,
+                    brightness: Brightness.light,
                 ),
-                home: const MyHomePage(title: 'Ariculture Home Page'),
+                home: LoginPage(),
                 routes: {
                     "/login": (BuildContext context) => const LoginPage(),
                     "/register": (BuildContext context) => const RegisterPage(),
@@ -54,22 +60,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<CookieRequest>();
+    final user = context.watch<CookieRequest>();
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -134,8 +127,23 @@ class _MyHomePageState extends State<MyHomePage> {
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.blue),
               ),
-              onPressed: () {
-                print(request.loggedIn);
+              onPressed: () async {
+                var url2 = Uri.parse('http://127.0.0.1:8000/account/json/');
+                var response2 = await http.get(
+                url2,
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                );
+
+
+
+                print(response2);
+
+                // decode the response into the json form
+                var data = jsonDecode(utf8.decode(response2.bodyBytes));
+
+                print(data);
               },
             ),
           ],

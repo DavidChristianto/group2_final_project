@@ -18,6 +18,14 @@ class _RegisterPageState extends State<RegisterPage> {
     String password1 = "";
     String password2 = "";
 
+    bool isPasswordVisible = false;
+
+    void togglePasswordView() {
+        setState(() {
+        isPasswordVisible = !isPasswordVisible;
+        });
+    }
+
     @override
     Widget build(BuildContext context) {
         final request = context.watch<CookieRequest>();
@@ -42,7 +50,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                             icon: const Icon(Icons.people),
                                             // Added a circular border to make it neater
                                             border: OutlineInputBorder(
-                                                borderRadius: BorderRadius.circular(5.0),
+                                                borderRadius: BorderRadius.circular(10.0),
                                             ),
                                         ),
                                         // Added behavior when name is typed 
@@ -73,12 +81,24 @@ class _RegisterPageState extends State<RegisterPage> {
                                             hintText: "Password",
                                             labelText: "Password",
                                             // Add icons to make it more intuitive
-                                            icon: const Icon(Icons.people),
+                                            icon: const Icon(Icons.password),
                                             // Added a circular border to make it neater
                                             border: OutlineInputBorder(
-                                                borderRadius: BorderRadius.circular(5.0),
+                                                borderRadius: BorderRadius.circular(10.0),
                                             ),
+                                            suffixIcon: IconButton(
+                                                icon: Icon(
+                                                    isPasswordVisible
+                                                    ? Icons.visibility_off
+                                                    : Icons.visibility,
+                                                    color: Theme.of(context).primaryColorDark,
+                                                ),
+                                                onPressed: () {
+                                                    togglePasswordView();
+                                                }
+                                            )
                                         ),
+                                        obscureText: !isPasswordVisible,
                                         // Added behavior when name is typed 
                                         onChanged: (String? value) {
                                             setState(() {
@@ -107,12 +127,24 @@ class _RegisterPageState extends State<RegisterPage> {
                                             hintText: "Repeat Password",
                                             labelText: "Repeat Password",
                                             // Add icons to make it more intuitive
-                                            icon: const Icon(Icons.people),
+                                            icon: const Icon(Icons.repeat),
                                             // Added a circular border to make it neater
                                             border: OutlineInputBorder(
-                                                borderRadius: BorderRadius.circular(5.0),
+                                                borderRadius: BorderRadius.circular(10.0),
                                             ),
+                                            suffixIcon: IconButton(
+                                                icon: Icon(
+                                                    isPasswordVisible
+                                                    ? Icons.visibility_off
+                                                    : Icons.visibility,
+                                                    color: Theme.of(context).primaryColorDark,
+                                                ),
+                                                onPressed: () {
+                                                    togglePasswordView();
+                                                }
+                                            )
                                         ),
+                                        obscureText: !isPasswordVisible,
                                         // Added behavior when name is typed 
                                         onChanged: (String? value) {
                                             setState(() {
@@ -137,11 +169,11 @@ class _RegisterPageState extends State<RegisterPage> {
                                 SizedBox(height: 16),
                                 TextButton(
                                     child: const Text(
-                                        "Login",
+                                        "Register",
                                         style: TextStyle(color: Colors.white),
                                     ),
                                     style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(Colors.blue),
+                                    backgroundColor: MaterialStateProperty.all(Colors.green),
                                     ),
                                     onPressed: () async {
                                         if (_registerFormKey.currentState!.validate()) {
