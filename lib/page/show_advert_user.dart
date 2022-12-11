@@ -98,7 +98,7 @@ class _Show_advert_user_state extends State<Show_advert_user> {
                                 ),
                             ),
                             Text(
-                                "by : ${snapshot.data![index].fields.username}",
+                                "by : ${snapshot.data![index].fields.adType}",
                                 style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 18.0,

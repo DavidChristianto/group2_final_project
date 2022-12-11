@@ -45,9 +45,9 @@ class _MyFormPageState extends State<MyFormPage> {
     
 
     String _title = "";
-    List<String> listAdType = ['Farmland','Products'];
+    List<String> listAdType = ['FARMLAND','PRODUCTS'];
     String description = "";
-    String _adtype = "Farmland";
+    String _adtype = "FARMLAND";
 
     @override
     Widget build(BuildContext context) {
