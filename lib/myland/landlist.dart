@@ -17,6 +17,7 @@ class LandListPage extends StatefulWidget {
 
 class _LandListPageState extends State<LandListPage> {
     final GlobalKey<AnimatedListState> _key = GlobalKey();
+    int peanutCount = 0;
 
     Future<List<UserLand>> fetchLandList(request) async {
         final plantMap = {
@@ -107,7 +108,7 @@ class _LandListPageState extends State<LandListPage> {
                 elevation: 8.0,
                 margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
                 child: ListTile(
-                    contentPadding: EdgeInsets.fromLTRB(24.0, 10.0, 10.0, 10.0),
+                    contentPadding: EdgeInsets.fromLTRB(14.0, 10.0, 10.0, 10.0),
                     leading: Container(
                         padding: EdgeInsets.only(right: 12.0),
                         decoration: new BoxDecoration(
@@ -115,7 +116,43 @@ class _LandListPageState extends State<LandListPage> {
                                 right: new BorderSide(width: 1.0, color: Colors.grey),
                             ),
                         ),
-                        child: Icon(Icons.grass_rounded),
+                        child: data.fields.plant != 'Peanut' ? 
+                            IconButton(
+                                padding: EdgeInsets.zero,
+                                icon: Icon(Icons.grass_rounded),
+                                onPressed: () {},
+                            ) 
+                            :
+                            IconButton(
+                                padding: EdgeInsets.zero,
+                                icon: Icon(Icons.grass_rounded),
+                                onPressed: () {
+                                    peanutCount +=1 ;
+                                    if(peanutCount % 5 == 3) {
+                                        showGeneralDialog(
+                                            barrierLabel: "Label",
+                                            barrierDismissible: true,
+                                            barrierColor: Colors.black.withOpacity(0.5),
+                                            transitionDuration: Duration(milliseconds: 400),
+                                            context: context,
+                                            pageBuilder: (context, anim1, anim2) {
+                                                return Align(
+                                                    alignment: Alignment.bottomCenter,
+                                                    child:Image(
+                                                        image: NetworkImage('https://i.ibb.co/4M8W3G6/anyawaku-cropped.png'),
+                                                    ),
+                                                );
+                                            },
+                                            transitionBuilder: (context, anim1, anim2, child) {
+                                                return SlideTransition(
+                                                    position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(anim1),
+                                                    child: child,
+                                                );
+                                            },
+                                        );
+                                    };
+                                },
+                            )
                     ),
                     trailing: IconButton(
                         icon: Icon(
@@ -152,7 +189,7 @@ class _LandListPageState extends State<LandListPage> {
                         ),
                     ),
                     title: Text(
-                        datas![index].fields.plant!,
+                        index >= datas.length ? '' : datas![index].fields.plant!,
                         style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     onTap: () {

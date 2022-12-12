@@ -79,19 +79,19 @@ class DetailPage extends StatelessWidget {
                                 DataRow(
                                     cells: <DataCell>[
                                         DataCell(Text('Urea', style: TextStyle(fontWeight: FontWeight.bold))),
-                                        DataCell(Text('${land.fields.amountOfUNeeded} kg')),
+                                        DataCell(Text('${land.fields.amountOfUNeeded.toStringAsFixed(2)} kg')),
                                     ],
                                 ),
                                 DataRow(
                                     cells: <DataCell>[
                                         DataCell(Text('SP36', style: TextStyle(fontWeight: FontWeight.bold))),
-                                        DataCell(Text('${land.fields.amountOfSNeeded} kg')),
+                                        DataCell(Text('${land.fields.amountOfSNeeded.toStringAsFixed(2)} kg')),
                                     ],
                                 ),
                                 DataRow(
                                     cells: <DataCell>[
                                         DataCell(Text('KCl', style: TextStyle(fontWeight: FontWeight.bold))),
-                                        DataCell(Text('${land.fields.amountOfKNeeded} kg')),
+                                        DataCell(Text('${land.fields.amountOfKNeeded.toStringAsFixed(2)} kg')),
                                     ],
                                 ),
                             ],
