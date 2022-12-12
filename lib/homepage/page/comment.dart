@@ -47,14 +47,16 @@ class _CommentPageState extends State<CommentPage> {
               style: TextStyle(color: Colors.black, fontSize: 30)),
           elevation: 0.0,
           backgroundColor: Colors.transparent,
-          actions: [
-            IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.people,
-                  color: Colors.green,
-                ))
-          ],
+          leading: GestureDetector(
+                    child: Icon(
+                        Icons.arrow_back_rounded,
+                        color: Colors.black,
+                        
+                    ),
+                    onTap: () {
+                        Navigator.pop(context);
+                    }
+                ),
         ),
         body: SingleChildScrollView(
           child: FutureBuilder(

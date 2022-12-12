@@ -17,6 +17,7 @@ class _RegisterPageState extends State<RegisterPage> {
     String username = "";
     String password1 = "";
     String password2 = "";
+    String error = "";
 
     bool isPasswordVisible = false;
 
@@ -32,6 +33,16 @@ class _RegisterPageState extends State<RegisterPage> {
         return Scaffold(
             appBar : AppBar(
                 title: Text('Register Page'),
+                leading: GestureDetector(
+                    child: Icon(
+                        Icons.arrow_back_rounded,
+                        color: Colors.black,
+                        
+                    ),
+                    onTap: () {
+                        Navigator.pop(context);
+                    }
+                )
             ),
             body: Form(
                 key: _registerFormKey,
@@ -186,10 +197,17 @@ class _RegisterPageState extends State<RegisterPage> {
                                         if (response['status']) {
                                             Navigator.pop(context);
                                         } else {
-                                            print('nopers');
+                                            setState(() {
+                                                error = "Invalid Input!";
+                                            });
                                         }
                                         }
                                     }
+                                ),
+                                SizedBox(height: 16),
+                                Text(
+                                    error,
+                                    style: TextStyle(color: Colors.red)
                                 )
                             ]
                         )

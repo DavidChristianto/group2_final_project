@@ -76,17 +76,17 @@ class _LoginPageState extends State<LoginPage> {
                                                     child: Text(
                                                         "ARICULTURE",
                                                         style: TextStyle(
-                                                            fontSize: 65,
+                                                            fontSize: MediaQuery.of(context).size.width * 0.1,
                                                             fontWeight: FontWeight.bold,
                                                             )
                                                     )
                                                 ),
                                                 Padding(
-                                                    padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.025),
+                                                    padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.width * 0.025),
                                                     child: Text(
                                                         "LOGIN",
                                                         style: TextStyle(
-                                                            fontSize: 25,
+                                                            fontSize: MediaQuery.of(context).size.width * 0.04,
                                                             fontWeight: FontWeight.bold,
                                                             color: Colors.green
                                                             )
@@ -222,13 +222,20 @@ class _LoginPageState extends State<LoginPage> {
 
                                                                             user = username;
 
-                                                                            Navigator.pushReplacement(
+                                                                            setState(() {
+                                                                                username = "";
+                                                                                password = "";
+                                                                            });
+
+                                                                            Navigator.push(
                                                                                 context,
                                                                                 MaterialPageRoute(builder: (context) => const ActualPage()),
                                                                             );
                                                                             
                                                                         } else {
-                                                                            print(request.loggedIn);
+                                                                            setState(() {
+                                                                                error = "Invalid Input!";
+                                                                            });
                                                                         }
                                                                         }
                                                                     }
@@ -237,6 +244,14 @@ class _LoginPageState extends State<LoginPage> {
                                                         ]
                                                     ),
                                                 ),
+                                                SizedBox(height: 16),
+                                                Padding(
+                                                    padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.1),
+                                                    child: Text(
+                                                        error,
+                                                        style: TextStyle(color: Colors.red)
+                                                    )
+                                                )
                                                 
                                             ]
                                         )

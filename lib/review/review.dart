@@ -46,6 +46,16 @@ class _MyReviewListState extends State<MyReviewListPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Review Page'),
+        leading: GestureDetector(
+                    child: Icon(
+                        Icons.arrow_back_rounded,
+                        color: Colors.black,
+                        
+                    ),
+                    onTap: () {
+                        Navigator.pop(context);
+                    }
+                ),
       ),
       body: FutureBuilder(
           future: fetchModel(),
@@ -100,7 +110,7 @@ class _MyReviewListState extends State<MyReviewListPage> {
                                   leading:
 
                                   Image.asset(
-                                    'assets/images/user.png',
+                                    '/images/user.png',
                                     height: 60.0,
                                     fit: BoxFit.cover,
                                   ),

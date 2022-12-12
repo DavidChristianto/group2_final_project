@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:ariculture/Advertisement/model/advert.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:ariculture/Advertisement/page/show_advert.dart';
-import 'package:ariculture/Advertisement/page/show_advert_user.dart';
+import 'package:ariculture/Advertisement/Page/show_advert_user.dart';
+import 'package:ariculture/Advertisement/Page/show_advert.dart';
+import 'package:ariculture/Advertisement/Page/advert_create.dart';
 
 
 class MyFormPage extends StatefulWidget {
@@ -31,6 +32,16 @@ class _MyFormPageState extends State<MyFormPage> {
         return Scaffold(
             appBar: AppBar(
               title: Text('Form'),
+              leading: GestureDetector(
+                    child: Icon(
+                        Icons.arrow_back_rounded,
+                        color: Colors.black,
+                        
+                    ),
+                    onTap: () {
+                        Navigator.pop(context);
+                    }
+                ),
             ),
               
             body: Form(
@@ -45,7 +56,7 @@ class _MyFormPageState extends State<MyFormPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                         decoration: InputDecoration(
-                            hintText: "Example: Buy New Phone",
+                            hintText: "Your Advert Title",
                             labelText: "Title",
                             // Added a circular border to make it neater
                             border: OutlineInputBorder(
@@ -128,7 +139,7 @@ class _MyFormPageState extends State<MyFormPage> {
                         children: [
                         TextButton(
                         child: const Text("Save",style: TextStyle(color: Colors.white)),
-                        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue)),
+                        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green)),
                         onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                             final response = await request.post('https://web-production-19b0.up.railway.app/save_ad_f/',{
@@ -137,20 +148,14 @@ class _MyFormPageState extends State<MyFormPage> {
                                 'ad_type' : _adtype
                             });
                         }
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => const show_advert()),
-                          (Route route) => false
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const Show_advert_user()),
                         );
                       },
-                      ),
-                      TextButton(
-                        child: const Text("Created Advertisements",style: TextStyle(color: Colors.white)),
-                        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue)),
-                        onPressed: () {
-                        // Routing the menu to the form page
-                         Navigator.pop(context);
-                        },
                       ),
                         
                       ]

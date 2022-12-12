@@ -42,18 +42,50 @@ class _ActualPageState extends State<ActualPage> {
                 automaticallyImplyLeading: false,
                 actions: [
                     IconButton(
-                        onPressed: () async {
-                            final logout = await request.logout('https://web-production-19b0.up.railway.app/account/logout_user_f/');
-                            print(logout);
-                            print(request.loggedIn);
-                            user = '';
-                            userMap = {};
-                            Navigator.pop(context);
+                        onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                    return AlertDialog(
+                                        title: const Text('Confirm Deletion'),
+                                        content: const Text('Are you sure you want to delete this data?'),
+                                        actionsPadding: EdgeInsets.all(16.0),
+                                        actions: [
+                                            TextButton(
+                                                onPressed: () {
+                                                    Navigator.pop(context);
+                                                },
+                                                child: const Text('No')
+                                            ),
+                                            TextButton(
+                                                onPressed: () async {
+                                                    Navigator.pop(context);
+                                                    Navigator.pop(context);
+                                                    Navigator.pushReplacement(
+                                                        context,
+                                                        MaterialPageRoute(builder: (context) => const LoginPage()),
+                                                    );
+                                                    final logout = await request.logout('https://web-production-19b0.up.railway.app/account/logout_user_f/');
+                                                    user = '';
+                                                    userMap = {};
+
+                                                },
+                                                style: TextButton.styleFrom(
+                                                    primary: Colors.white,
+                                                    backgroundColor: Colors.green,
+                                                ),
+                                                child: const Text('Yes')
+                                            ),
+                                        ],
+                                    );
+                                },
+                            );
                         },
                         icon: Icon(
                             Icons.logout,
                             color: Colors.green,
-                    ))
+                        )
+                    )
                 ],
             ),
             body: Center(
@@ -89,7 +121,7 @@ class _ActualPageState extends State<ActualPage> {
                         child: const FittedBox(
                         fit: BoxFit.fitWidth,
                         child: Image(
-                            image: AssetImage("agri.png"),
+                            image: AssetImage("/images/agri.png"),
                             fit: BoxFit.contain,
                             width: 300,
                             height: 300,
@@ -109,7 +141,7 @@ class _ActualPageState extends State<ActualPage> {
                                 backgroundColor: const Color(0xffd3462c),
                                 shape: const StadiumBorder(),
                                 minimumSize: const Size(280, 50)),
-                            child: const Text("Explore",
+                            child: const Text("Your Farmland!",
                                 style: TextStyle(
                                     fontSize: 20,
                                     fontFamily: 'Quicksand',
@@ -124,8 +156,6 @@ class _ActualPageState extends State<ActualPage> {
             bottomNavigationBar: Container(
                 margin: EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(16),
                 ),
                 child: BottomNavigationBar(
                     elevation: 0.0,
@@ -166,10 +196,10 @@ class _ActualPageState extends State<ActualPage> {
                         switch(index) {
                             case 0: {
                                 setState(() {
-                                    _selectedIndex = index;
+                                    _selectedIndex = 0;
                                 });
 
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(builder: (context) => const ActualPage()),
                                 );
@@ -177,7 +207,7 @@ class _ActualPageState extends State<ActualPage> {
                             }
                             case 1: {
                                 setState(() {
-                                    _selectedIndex = index;
+                                    _selectedIndex = 0;
                                 });
 
                                 Navigator.push(
@@ -188,7 +218,7 @@ class _ActualPageState extends State<ActualPage> {
                             }
                             case 2: {
                                 setState(() {
-                                    _selectedIndex = index;
+                                    _selectedIndex = 0;
                                 });
 
                                 Navigator.push(
@@ -199,7 +229,7 @@ class _ActualPageState extends State<ActualPage> {
                             }
                             case 3: {
                                 setState(() {
-                                    _selectedIndex = index;
+                                    _selectedIndex = 0;
                                 });
 
                                 Navigator.push(
@@ -210,7 +240,7 @@ class _ActualPageState extends State<ActualPage> {
                                 }
                             case 4: {
                                 setState(() {
-                                    _selectedIndex = index;
+                                    _selectedIndex = 0;
                                 });
                                 
                                 Navigator.push(                                        
@@ -222,7 +252,7 @@ class _ActualPageState extends State<ActualPage> {
 
                             case 5: {
                                 setState(() {
-                                    _selectedIndex = index;
+                                    _selectedIndex = 0;
                                 });
                                 
                                 Navigator.push(                                        

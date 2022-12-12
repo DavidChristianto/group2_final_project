@@ -120,7 +120,7 @@ class _AddLandPageState extends State<AddLandPage> {
                                             style: TextStyle(color: Colors.white),
                                         ),
                                         style: ButtonStyle(
-                                            backgroundColor: MaterialStateProperty.all(Colors.blue),
+                                            backgroundColor: MaterialStateProperty.all(Colors.green),
                                         ),
                                         onPressed: () {
                                             if (_formKey.currentState!.validate()) {
@@ -174,6 +174,7 @@ class _AddLandPageState extends State<AddLandPage> {
                                                                                 ),
                                                                                 TextButton(
                                                                                     onPressed: () async {
+                                                                                        Navigator.pop(context);
                                                                                         Navigator.pop(context);
                                                                                         Navigator.pop(context);
                                                                                         Navigator.push(context, MaterialPageRoute(builder: (context) => const LandListPage()));

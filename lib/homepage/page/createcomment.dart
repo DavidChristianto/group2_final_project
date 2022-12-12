@@ -30,10 +30,7 @@ class _AddCommentPageState extends State<AddCommentPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add Reccomendation'),
-        backgroundColor: Color.fromARGB(255, 97, 134, 255),
       ),
-      // Form
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -118,6 +115,12 @@ class _AddCommentPageState extends State<AddCommentPage> {
                       clearText();
 
                       Navigator.pop(context);
+                      Navigator.pop(context);
+                      Navigator.push(                                        
+                          context,
+                          MaterialPageRoute(builder: (context) => const CommentPage()),
+                      );
+
 
                     }
                   },

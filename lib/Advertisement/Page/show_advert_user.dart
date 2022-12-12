@@ -2,6 +2,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:ariculture/Advertisement/Model/advert.dart';
+import 'package:ariculture/Advertisement/Page/show_advert_user.dart';
+import 'package:ariculture/Advertisement/Page/show_advert.dart';
 import 'package:ariculture/Advertisement/Page/advert_create.dart';
 
 class Show_advert_user extends StatefulWidget {
@@ -38,16 +40,26 @@ class _Show_advert_user_state extends State<Show_advert_user> {
         return Scaffold(
             appBar: AppBar(
                 title: Text('Data'),
+                leading: GestureDetector(
+                    child: Icon(
+                        Icons.arrow_back_rounded,
+                        color: Colors.black,
+                        
+                    ),
+                    onTap: () {
+                        Navigator.pop(context);
+                    }
+                ),
                 actions: [
                     IconButton(
                         onPressed: () async {
                             Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => const MyFormPage()),
+                                MaterialPageRoute(builder: (context) => const show_advert()),
                             );
                         },
                         icon: Icon(
-                            Icons.logout,
+                            Icons.people,
                             color: Colors.white,
                     ))
                 ],

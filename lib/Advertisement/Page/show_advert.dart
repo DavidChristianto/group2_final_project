@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:ariculture/Advertisement/Model/advert.dart';
 import 'package:ariculture/Advertisement/Page/show_advert_user.dart';
+import 'package:ariculture/Advertisement/Page/show_advert.dart';
+import 'package:ariculture/Advertisement/Page/advert_create.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 
@@ -33,19 +35,16 @@ class _show_advert extends State<show_advert> {
         return Scaffold(
             appBar: AppBar(
                 title: Text('Data'),
-                actions: [
-                    IconButton(
-                        onPressed: () async {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => const Show_advert_user()),
-                            );
-                        },
-                        icon: Icon(
-                            Icons.people,
-                            color: Colors.white,
-                    ))
-                ],
+                leading: GestureDetector(
+                    child: Icon(
+                        Icons.arrow_back_rounded,
+                        color: Colors.black,
+                        
+                    ),
+                    onTap: () {
+                        Navigator.pop(context);
+                    }
+                ),
             ),
 
             body: FutureBuilder(
@@ -133,6 +132,20 @@ class _show_advert extends State<show_advert> {
         }
 
             ),
+            floatingActionButton: Padding(
+        padding: EdgeInsets.only(left: 30),
+        child:
+        FloatingActionButton(
+          onPressed: () =>
+          {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MyFormPage()),
+            )
+          },
+          child: Icon(Icons.add),
+        ),
+      ),
 
         );
 
