@@ -69,11 +69,18 @@ class _Show_advert_user_state extends State<Show_advert_user> {
                     margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                     padding: const EdgeInsets.all(20.0),
                     decoration: BoxDecoration(
-                        color:Colors.white,
+                        image: DecorationImage(
+                            image:(snapshot.data![index].fields.adType == 'FARMLAND')? NetworkImage(
+                                'https://imageio.forbes.com/specials-images/imageserve/62be10f32ce37625d88bca9b/Tractor-spraying-pesticides-on-soybean-field--with-sprayer-at-spring/960x0.jpg?format=jpg&width=960'
+                            ):NetworkImage(
+                                'https://www.jbtc.com/foodtech/wp-content/uploads/sites/2/2021/08/Fresh-Produce-Collage.jpg'
+                            ),
+                            fit:BoxFit.fill
+                        ),
                         borderRadius: BorderRadius.circular(15.0),
                         boxShadow: const [
                         BoxShadow(
-                            color: Colors.black,
+                            color: Colors.white,
                             blurRadius: 2.0
                         )
                         ]
@@ -85,7 +92,7 @@ class _Show_advert_user_state extends State<Show_advert_user> {
                         Text(
                             "${snapshot.data![index].fields.title}",
                             style: const TextStyle(
-                                color: Colors.black,
+                                color: Colors.white,
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.bold,
                             ),
@@ -93,14 +100,14 @@ class _Show_advert_user_state extends State<Show_advert_user> {
                             Text(
                                 "${snapshot.data![index].fields.description}",
                                 style: const TextStyle(
-                                    color: Colors.black,
+                                    color: Colors.white,
                                     fontSize: 18.0,
                                 ),
                             ),
                             Text(
-                                "by : ${snapshot.data![index].fields.username}",
+                                "by : ${snapshot.data![index].fields.adType}",
                                 style: const TextStyle(
-                                    color: Colors.black,
+                                    color: Colors.white,
                                     fontSize: 18.0,
                                     fontWeight: FontWeight.bold,
                                 ),

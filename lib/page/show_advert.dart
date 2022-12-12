@@ -110,7 +110,6 @@ class _show_advert extends State<show_advert> {
                                     setState(() {});
                                 },
                             ),
-
                         ],
                     ),
                     ),
