@@ -90,7 +90,7 @@ class _ActualPageState extends State<ActualPage> {
                         child: ElevatedButton(
                             onPressed: () async {
                                 print('before');
-                                final logout = await request.logout('http://127.0.0.1:8000/account/logout_user_f/');
+                                final logout = await request.logout('https://web-production-19b0.up.railway.app/account/logout_user_f/');
                                 print('after');
                                 print(logout);
                                 print(request.loggedIn);

@@ -203,14 +203,14 @@ class _LoginPageState extends State<LoginPage> {
                                                                     ),
                                                                     onPressed: () async {
                                                                         if (_loginFormKey.currentState!.validate()) {
-                                                                            final response = await request.login("http://127.0.0.1:8000/account/login_f/", {
+                                                                            final response = await request.login("https://web-production-19b0.up.railway.app/account/login_f/", {
                                                                             'username': username,
                                                                             'password': password,
                                                                         });
                                                                         if (request.loggedIn) {
                                                                             print("before");
 
-                                                                            final data = await request.get("http://127.0.0.1:8000/account/json/");
+                                                                            final data = await request.get("https://web-production-19b0.up.railway.app/account/json/");
 
                                                                             print("after");
 
