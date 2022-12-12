@@ -110,7 +110,7 @@ class _MyReviewListState extends State<MyReviewListPage> {
                                   leading:
 
                                   Image.asset(
-                                    '/images/user.png',
+                                    'assets/images/user.png',
                                     height: 60.0,
                                     fit: BoxFit.cover,
                                   ),
