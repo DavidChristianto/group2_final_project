@@ -77,7 +77,7 @@ class _CommentPageState extends State<CommentPage> {
                 return Column(
                 children: const [
                     Text(
-                    "To do list is empty :(",
+                    "There are no comments currently :(",
                     style: TextStyle(
                         color: Color(0xff59A5D8),
                         fontSize: 20),

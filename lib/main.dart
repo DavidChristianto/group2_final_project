@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
                     primarySwatch: Colors.green,
                     brightness: Brightness.light,
                 ),
-                home: LoginPage(),
+                home: ActualPage(),
                 routes: {
                     "/login": (BuildContext context) => const LoginPage(),
                     "/register": (BuildContext context) => const RegisterPage(),
