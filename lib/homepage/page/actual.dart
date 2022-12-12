@@ -121,7 +121,7 @@ class _ActualPageState extends State<ActualPage> {
                         child: const FittedBox(
                         fit: BoxFit.fitWidth,
                         child: Image(
-                            image: NetworkImage("https://w7.pngwing.com/pngs/150/217/png-transparent-green-seedling-illustration-chicken-skin-plant-planting-trees-leaf-plants-crop-thumbnail.png"),
+                            image: AssetImage("assets/images/agri.png"),
                             fit: BoxFit.contain,
                             width: 300,
                             height: 300,
