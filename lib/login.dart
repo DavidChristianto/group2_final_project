@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:ariculture/main.dart';
+import 'package:ariculture/dashboard.dart';
 import 'dart:convert';
 
 class LoginPage extends StatefulWidget {
@@ -110,12 +111,16 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                     onPressed: () async {
                                         if (_loginFormKey.currentState!.validate()) {
-                                            final response = await request.login("https://web-production-19b0.up.railway.app/account/login_f/", {
+                                            final response = await request.login("http://localhost:8000/account/login_f/", {
                                             'username': username,
                                             'password': password,
                                         });
                                         if (request.loggedIn) {
-                                            Navigator.pop(context);
+                                            Navigator.pushAndRemoveUntil(
+                                                context,
+                                                MaterialPageRoute(builder: (context) => const DashboardPage()),
+                                                (Route route) => false
+                                            );
                                         } else {
                                             print(request.loggedIn);
                                         }
