@@ -140,7 +140,7 @@ class _LandListPageState extends State<LandListPage> {
                                                 return Align(
                                                     alignment: Alignment.bottomCenter,
                                                     child:Image(
-                                                        image: AssetImage('images/anyawaku_cropped.png'),
+                                                        image: NetworkImage('https://i.ibb.co/4M8W3G6/anyawaku-cropped.png'),
                                                     ),
                                                 );
                                             },
