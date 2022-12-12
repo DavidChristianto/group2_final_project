@@ -11,7 +11,7 @@ import 'package:ariculture/account/profile.dart';
 import 'package:ariculture/myland/landlist.dart';
 import 'package:ariculture/news/screens/navpage.dart';
 import 'package:ariculture/review/review.dart';
-import 'package:ariculture/Advertisement/Page/show_advert.dart';
+import 'package:ariculture/Advertisement/Page/show_advert_user.dart';
 import 'package:ariculture/homepage/page/comment.dart';
 
 class ActualPage extends StatefulWidget {
@@ -204,7 +204,7 @@ class _ActualPageState extends State<ActualPage> {
 
                                 Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => const show_advert()),
+                                    MaterialPageRoute(builder: (context) => const Show_advert_user()),
                                 );
                                 break;
                                 }
