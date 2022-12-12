@@ -12,8 +12,7 @@ import 'package:provider/provider.dart';
 
 
 List<Review> data =[];
-class MyFormPage extends StatefulWidget { //formpaagenya adalah statefulwidget, yg punya fungsi createstate yang bakal biki state baru
-  //Myformstatestage
+class MyFormPage extends StatefulWidget {
   const MyFormPage({super.key});
 
 
@@ -22,7 +21,7 @@ class MyFormPage extends StatefulWidget { //formpaagenya adalah statefulwidget, 
 }
 
 class _MyFormPageState extends State<MyFormPage>{
-  final _formKey = GlobalKey<FormState>(); //utk validation utk save data
+  final _formKey = GlobalKey<FormState>();
   // String TitleName = "";
   // String amount = "";
   // String IncomeType = 'Choose Type';
@@ -38,9 +37,10 @@ class _MyFormPageState extends State<MyFormPage>{
         appBar: AppBar(
           title: Text('Add Review'),
         ),
-        drawer: drawer(), // ambil dari file drawer.dart
-        body: Form(key: _formKey, child: SingleChildScrollView( // keynya formkey utk validasi dan save
+        drawer: drawer(),
+        body: Form(key: _formKey, child: SingleChildScrollView(
           child: Container(
+
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
@@ -74,28 +74,53 @@ class _MyFormPageState extends State<MyFormPage>{
                     },
                   ),
                 ),
-                TextButton(
-                  child: const Text( // button save
-                    "Save",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.blue),
-                  ),
-                  onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
-                      final response = await request.post("https://web-production-19b0.up.railway.app/review/save_review/",{
-                        'rating': '${rates}',
-                        'review_text': text_review,
+                Container(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child:TextButton(
+                          child: const Text( // button save
+                            "Save",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(Colors.blue),
+                          ),
+                          onPressed: () async {
+                            if (_formKey.currentState!.validate()) {
+                              final response = await request.post("https://web-production-19b0.up.railway.app/review/save_review/",{
+                                'rating': '${rates}',
+                                'review_text': text_review,
 
-                      });
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => const MyReviewListPage()),
-                      );
-                    }
-                  },
-                ),
+                              });
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (context) => const MyReviewListPage()),
+                              );
+                            }
+                          },
+                        ),
+                      ),
+
+                      TextButton(
+                        child: const Text(
+                          "Back",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Colors.blue),
+                        ),
+                        onPressed: () async {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => const MyReviewListPage()),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
           ),

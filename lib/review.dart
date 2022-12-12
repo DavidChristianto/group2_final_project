@@ -23,8 +23,7 @@ class _MyReviewListState extends State<MyReviewListPage> {
 
 
   Future<List<Review>> fetchModel() async {
-
-    var url = Uri.parse('https://web-production-19b0.up.railway.app/review/json/'); // pake method hhttp get untuk dapetin data json
+    var url = Uri.parse('https://web-production-19b0.up.railway.app/review/json/');
     print('fetching');
     var response = await http.get(
       url,
@@ -34,8 +33,7 @@ class _MyReviewListState extends State<MyReviewListPage> {
     );
     print('fetched!');
 
-    // decode the response into the json form
-    var data = jsonDecode(utf8.decode(response.bodyBytes)); // decode menjadi json string, lalu abis itu harus dimasukin ke models
+    var data = jsonDecode(utf8.decode(response.bodyBytes));
 
     // convert the json data into ToDo object
     List<Review> listReview = []; // conver data yg di fetch dlm json ke dalam models
@@ -44,9 +42,7 @@ class _MyReviewListState extends State<MyReviewListPage> {
         listReview.add(Review.fromJson(d));
       }
     }
-
     print('parsed');
-
     return listReview;
   }
 
@@ -57,15 +53,14 @@ class _MyReviewListState extends State<MyReviewListPage> {
         title: const Text('Review Page'),
       ),
       drawer: drawer(),
-      body: FutureBuilder( // utk build widget berdasarkan hasil yg didapat dr widget future, yg menghasilkan list
-        // listnya itu sbg snapshot, datanya bisa diakses melalui index
+      body: FutureBuilder(
           future: fetchModel(),
           builder: (context, AsyncSnapshot snapshot) {
             if (snapshot.data == null) {
               return const Center(
-                  child: CircularProgressIndicator()); // klo dia masih fetch data, kek liatin animasi buffer
+                  child: CircularProgressIndicator());
             } else {
-              if (!snapshot.hasData) { // ! klo ga ada datanya munculin pesan
+              if (!snapshot.hasData) {
                 return Column(
                   children: const [
                     Text(
@@ -78,16 +73,21 @@ class _MyReviewListState extends State<MyReviewListPage> {
                   ],
                 );
               } else {
-                return ListView.builder( // klo ada data masuk ke sini
+                return ListView.builder(
                   itemCount: snapshot.data!.length,
                   itemBuilder: (_, index) =>
-                      GestureDetector( //merupakan wrapper,
-                        // jadi bisa membuat event handler yang bermacam-macam untuk 1 child (contohnya handle ontap
+                      GestureDetector(
                           child: Container(
                             margin: const EdgeInsets.symmetric(
                                 horizontal: 16, vertical: 12),
                             padding: const EdgeInsets.all(20.0),
                             decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        'https://i.ibb.co/MpyCMgY/gambar2.jpg'
+                                    ),
+                                    fit:BoxFit.fill
+                                ),
                                 color: Colors.grey,
                                 borderRadius: BorderRadius.circular(15.0),
                                 boxShadow: const [
@@ -116,7 +116,7 @@ class _MyReviewListState extends State<MyReviewListPage> {
                                     style: const TextStyle(
                                       fontSize: 35.0,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.black,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),
@@ -137,13 +137,11 @@ class _MyReviewListState extends State<MyReviewListPage> {
                                   style: const TextStyle(
                                     fontSize: 18.0,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.black,
+                                    color: Colors.white,
                                   ),
                                 ),
                                 const SizedBox(height: 20),
-                                // Text("${snapshot.data![index].completed}"),
                               ],
-
                             ),
                           )
                       ),
@@ -160,7 +158,7 @@ class _MyReviewListState extends State<MyReviewListPage> {
           {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => MyFormPage()), //validasi data pasti ga null
+              MaterialPageRoute(builder: (context) => MyFormPage()),
             )
           },
           child: Icon(Icons.add),
