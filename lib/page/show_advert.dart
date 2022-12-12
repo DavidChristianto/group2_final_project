@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:ariculture/model/advert.dart';
 import 'package:ariculture/drawer.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 class show_advert extends StatefulWidget {
     const show_advert({super.key});
@@ -12,30 +14,21 @@ class show_advert extends StatefulWidget {
 }
 
 class _show_advert extends State<show_advert> {
-    Future<List<Advert>> fetchAdvert() async {
-        var url = Uri.parse('https://web-production-19b0.up.railway.app/json/');
-        var response = await http.get(
-        url,
-        headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-        },
-        );
 
-        // decode the response into the json form
-        var data = jsonDecode(utf8.decode(response.bodyBytes));
-
-        List<Advert> listAdvert = [];
-        for (var d in data) {
-            if (d != null) {
-                listAdvert.add(Advert.fromJson(d));
-            }
-        }
-
-        return listAdvert;
-    }
     @override
     Widget build(BuildContext context) {
+        final request = context.watch<CookieRequest>();
+        Future<List<Advert>> fetchAdvert() async {
+            var response = await request.get('https://web-production-19b0.up.railway.app/json/');
+            List<Advert> listAdvert = [];
+            for (var d in response) {
+                if (d != null) {
+                    listAdvert.add(Advert.fromJson(d));
+                }
+            }
+            return listAdvert;
+        }
+
         return Scaffold(
             appBar: AppBar(
                 title: Text('Data'),
@@ -108,15 +101,25 @@ class _show_advert extends State<show_advert> {
                                     fontWeight: FontWeight.bold,
                                 ),
                             ),
+                            TextButton(
+                                child: const Text("Delete",style: TextStyle(color: Colors.white)),
+                                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.red)),
+                                onPressed: () async {
+                                    final response = await request.post("https://web-production-19b0.up.railway.app/set_remove_flutter/${snapshot.data![index].pk}",
+                                    {});
+                                    setState(() {});
+                                },
+                            ),
+
                         ],
                     ),
                     ),
-                  ) 
+                  )
                 );
             }
             }
         }
-                
+
             ),
 
         );

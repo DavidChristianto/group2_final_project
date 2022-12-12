@@ -19,30 +19,6 @@ class MyFormPage extends StatefulWidget {
 
 class _MyFormPageState extends State<MyFormPage> {
     final _formKey = GlobalKey<FormState>();
-      Future<List<Advert>> fetchAdvert() async {
-        var url = Uri.parse('https://web-production-19b0.up.railway.app/json');
-        var response = await http.get(
-        url,
-        headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-        },
-        );
-
-        // decode the response into the json form
-        var data = jsonDecode(utf8.decode(response.bodyBytes));
-
-        List<Advert> listAdvert = [];
-        for (var d in data) {
-            if (d != null) {
-                listAdvert.add(Advert.fromJson(d));
-            }
-        }
-
-        return listAdvert;
-    }
-    
-    
 
     String _title = "";
     List<String> listAdType = ['FARMLAND','PRODUCTS'];
@@ -161,8 +137,11 @@ class _MyFormPageState extends State<MyFormPage> {
                                 'description' : description ,
                                 'ad_type' : _adtype
                             });
-                        
                         }
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => const show_advert()),
+                        );
                       },
                       ),
                       TextButton(
