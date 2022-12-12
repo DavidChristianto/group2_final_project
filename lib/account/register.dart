@@ -42,7 +42,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     onTap: () {
                         Navigator.pop(context);
                     }
-                )
+                ),
             ),
             body: Form(
                 key: _registerFormKey,

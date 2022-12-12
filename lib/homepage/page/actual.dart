@@ -31,7 +31,7 @@ class _ActualPageState extends State<ActualPage> {
         return Scaffold(
             appBar : AppBar(
                 title: Text(
-                    'Ariculture',
+                    '',
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 30
@@ -47,8 +47,8 @@ class _ActualPageState extends State<ActualPage> {
                                 context: context,
                                 builder: (context) {
                                     return AlertDialog(
-                                        title: const Text('Confirm Deletion'),
-                                        content: const Text('Are you sure you want to delete this data?'),
+                                        title: const Text('Confirm Logout'),
+                                        content: const Text('Are you sure you want to logout?'),
                                         actionsPadding: EdgeInsets.all(16.0),
                                         actions: [
                                             TextButton(
