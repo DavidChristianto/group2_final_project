@@ -88,7 +88,7 @@ class _MyReviewListState extends State<MyReviewListPage> {
                                 horizontal: 16, vertical: 12),
                             padding: const EdgeInsets.all(20.0),
                             decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: Colors.grey,
                                 borderRadius: BorderRadius.circular(15.0),
                                 boxShadow: const [
                                   BoxShadow(
@@ -102,14 +102,25 @@ class _MyReviewListState extends State<MyReviewListPage> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  "${userMap[snapshot.data![index].fields.user.toString()]}",
-                                  style: const TextStyle(
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
+                                ListTile(
+                                  leading:
+
+                                  Image.asset(
+                                    'assets/images/gambar.png',
+                                    height: 60.0,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  title:
+                                  Text(
+                                    "${userMap[snapshot.data![index].fields.user.toString()]}",
+                                    style: const TextStyle(
+                                      fontSize: 35.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
                                   ),
                                 ),
+
                                 RatingBarIndicator(
                                   rating: snapshot.data![index].fields.rating,
                                   itemBuilder: (context, index) => Icon(

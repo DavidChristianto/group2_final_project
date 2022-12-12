@@ -47,7 +47,7 @@ class _MyFormPageState extends State<MyFormPage>{
               RatingBar.builder(
               initialRating: 1,
               direction: Axis.horizontal,
-              allowHalfRating: true,
+              allowHalfRating: false,
               itemCount: 5,
               itemBuilder: (context, index) => Icon(
                 Icons.star,
@@ -84,12 +84,11 @@ class _MyFormPageState extends State<MyFormPage>{
                   ),
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      final response = await request.post("https://web-production-19b0.up.railway.app/review/save_review",{
-                        'rating': rates,
+                      final response = await request.post("https://web-production-19b0.up.railway.app/review/save_review/",{
+                        'rating': '${rates}',
                         'review_text': text_review,
 
                       });
-
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(builder: (context) => const MyReviewListPage()),
