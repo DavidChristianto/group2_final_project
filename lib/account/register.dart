@@ -2,39 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:ariculture/main.dart';
+import 'dart:convert';
 
-
-class RegisterPage extends StatefulWidget {
-    const RegisterPage({super.key});
+class LoginPage extends StatefulWidget {
+    const LoginPage({super.key});
 
     @override
-    State<RegisterPage> createState() => _RegisterPageState();
+    State<LoginPage> createState() => _LoginPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
-    final _registerFormKey = GlobalKey<FormState>();
+class _LoginPageState extends State<LoginPage> {
+    final _loginFormKey = GlobalKey<FormState>();
 
     String username = "";
-    String password1 = "";
-    String password2 = "";
-
-    bool isPasswordVisible = false;
-
-    void togglePasswordView() {
-        setState(() {
-        isPasswordVisible = !isPasswordVisible;
-        });
-    }
+    String password = "";
 
     @override
     Widget build(BuildContext context) {
         final request = context.watch<CookieRequest>();
         return Scaffold(
             appBar : AppBar(
-                title: Text('Register Page'),
+                title: Text('Login Page'),
             ),
             body: Form(
-                key: _registerFormKey,
+                key: _loginFormKey,
                 child: SingleChildScrollView(
                     child: Container(
                         padding: const EdgeInsets.all(20.0),
@@ -50,7 +41,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                             icon: const Icon(Icons.people),
                                             // Added a circular border to make it neater
                                             border: OutlineInputBorder(
-                                                borderRadius: BorderRadius.circular(10.0),
+                                                borderRadius: BorderRadius.circular(5.0),
                                             ),
                                         ),
                                         // Added behavior when name is typed 
@@ -81,34 +72,22 @@ class _RegisterPageState extends State<RegisterPage> {
                                             hintText: "Password",
                                             labelText: "Password",
                                             // Add icons to make it more intuitive
-                                            icon: const Icon(Icons.password),
+                                            icon: const Icon(Icons.people),
                                             // Added a circular border to make it neater
                                             border: OutlineInputBorder(
-                                                borderRadius: BorderRadius.circular(10.0),
+                                                borderRadius: BorderRadius.circular(5.0),
                                             ),
-                                            suffixIcon: IconButton(
-                                                icon: Icon(
-                                                    isPasswordVisible
-                                                    ? Icons.visibility_off
-                                                    : Icons.visibility,
-                                                    color: Theme.of(context).primaryColorDark,
-                                                ),
-                                                onPressed: () {
-                                                    togglePasswordView();
-                                                }
-                                            )
                                         ),
-                                        obscureText: !isPasswordVisible,
                                         // Added behavior when name is typed 
                                         onChanged: (String? value) {
                                             setState(() {
-                                                password1 = value!;
+                                                password = value!;
                                             });
                                         },
                                         // Added behavior when data is saved
                                         onSaved: (String? value) {
                                             setState(() {
-                                                password1 = value!;
+                                                password = value!;
                                             });
                                         },
                                         // Validator as form validation
@@ -120,76 +99,25 @@ class _RegisterPageState extends State<RegisterPage> {
                                         },
                                     )
                                 ),
-                                Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: TextFormField(
-                                        decoration: InputDecoration(
-                                            hintText: "Repeat Password",
-                                            labelText: "Repeat Password",
-                                            // Add icons to make it more intuitive
-                                            icon: const Icon(Icons.repeat),
-                                            // Added a circular border to make it neater
-                                            border: OutlineInputBorder(
-                                                borderRadius: BorderRadius.circular(10.0),
-                                            ),
-                                            suffixIcon: IconButton(
-                                                icon: Icon(
-                                                    isPasswordVisible
-                                                    ? Icons.visibility_off
-                                                    : Icons.visibility,
-                                                    color: Theme.of(context).primaryColorDark,
-                                                ),
-                                                onPressed: () {
-                                                    togglePasswordView();
-                                                }
-                                            )
-                                        ),
-                                        obscureText: !isPasswordVisible,
-                                        // Added behavior when name is typed 
-                                        onChanged: (String? value) {
-                                            setState(() {
-                                                password2 = value!;
-                                            });
-                                        },
-                                        // Added behavior when data is saved
-                                        onSaved: (String? value) {
-                                            setState(() {
-                                                password2 = value!;
-                                            });
-                                        },
-                                        // Validator as form validation
-                                        validator: (String? value) {
-                                            if (value == null || value.isEmpty) {
-                                                return 'Repeat your password!';
-                                            }
-                                            return null;
-                                        },
-                                    )
-                                ),
                                 SizedBox(height: 16),
                                 TextButton(
                                     child: const Text(
-                                        "Register",
+                                        "Login",
                                         style: TextStyle(color: Colors.white),
                                     ),
                                     style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(Colors.green),
+                                    backgroundColor: MaterialStateProperty.all(Colors.blue),
                                     ),
                                     onPressed: () async {
-                                        if (_registerFormKey.currentState!.validate()) {
-                                            final response = await request.post("https://web-production-19b0.up.railway.app/account/register_f/", {
+                                        if (_loginFormKey.currentState!.validate()) {
+                                            final response = await request.login("https://web-production-19b0.up.railway.app/account/login_f/", {
                                             'username': username,
-                                            'password1': password1,
-                                            'password2': password2,
+                                            'password': password,
                                         });
-                                        
-                                        if (response['status']) {
+                                        if (request.loggedIn) {
                                             Navigator.pop(context);
-                                            Navigator.pushNamed(
-                                                context, '/login'
-                                            );
                                         } else {
-                                            print('nopers');
+                                            print(request.loggedIn);
                                         }
                                         }
                                     }

@@ -12,6 +12,8 @@ String user = '';
 Map <String, String> userMap = {};
 
 
+String user = '';
+Map<String,String> userMap= {};
 void main() {
   runApp(const MyApp());
 }
@@ -63,7 +65,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    final user = context.watch<CookieRequest>();
+    final request = context.watch<CookieRequest>();
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -121,32 +123,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.pushNamed(context, '/register');
               },
             ),
-            TextButton(
-              child: const Text(
-                "Test",
-                style: TextStyle(color: Colors.white),
-              ),
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.blue),
-              ),
-              onPressed: () async {
-                var url2 = Uri.parse('http://127.0.0.1:8000/account/json/');
-                var response2 = await http.get(
-                url2,
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                );
-
-
-
-                print(response2);
-
-                // decode the response into the json form
-                var data = jsonDecode(utf8.decode(response2.bodyBytes));
-
-                print(data);
-              },
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headline4,
             ),
           ],
         ),
@@ -154,3 +133,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+
+
