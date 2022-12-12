@@ -6,6 +6,7 @@ import 'package:ariculture/account/register.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:ariculture/main.dart';
+import 'package:ariculture/account/profile.dart';
 
 class ActualPage extends StatefulWidget {
     const ActualPage({super.key});
@@ -32,18 +33,86 @@ class _ActualPageState extends State<ActualPage> {
                     ),
                 elevation: 0.0,
                 backgroundColor: Colors.transparent,
+                automaticallyImplyLeading: false,
                 actions: [
                     IconButton(
                         onPressed: () {
+                            
                         },
                         icon: Icon(
-                            Icons.people,
+                            Icons.logout,
                             color: Colors.green,
                     ))
                 ],
             ),
-            body: SingleChildScrollView(
-                // NA
+            body: Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                    Container(
+                        padding: const EdgeInsets.only(left: 15, right: 15),
+                        child: const FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Text("Ariculture",
+                            style: TextStyle(
+                                fontSize: 60, color: Color.fromARGB(255, 0, 0, 0))),
+                        ),
+                    ),
+                    Center(
+                        child: Text("Aspiring farmers around the globe",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: Color.fromARGB(255, 0, 0, 0).withOpacity(0.5))),
+                    ),
+                    Center(
+                        child: Text("",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 15,
+                                fontFamily: 'Cairo',
+                                color: const Color(0xffFFFFFF).withOpacity(0.5))),
+                    ),
+                    Container(
+                        padding: const EdgeInsets.only(left: 7.5, right: 7.5),
+                        child: const FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Image(
+                            image: AssetImage("agri.png"),
+                            fit: BoxFit.contain,
+                            width: 300,
+                            height: 300,
+                        ),
+                        ),
+                    ),
+                    Container(
+                        margin: const EdgeInsets.all(20),
+                        child: ElevatedButton(
+                            onPressed: () async {
+                                print('before');
+                                final logout = await request.logout('http://127.0.0.1:8000/account/logout_user_f/');
+                                print('after');
+                                print(logout);
+                                print(request.loggedIn);
+
+                                Navigator.pop(context);
+
+
+                            },
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xffd3462c),
+                                shape: const StadiumBorder(),
+                                minimumSize: const Size(280, 50)),
+                            child: const Text("Explore",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontFamily: 'Quicksand',
+                                    color: Color(0xffFFFFFF)))),
+                    ),
+
+                    // Added behavior when budget is typed
+                    ],
+                )
             ),
 
             bottomNavigationBar: Container(
@@ -57,7 +126,7 @@ class _ActualPageState extends State<ActualPage> {
                     currentIndex: _selectedIndex,
                     items: [
                         BottomNavigationBarItem(
-                            backgroundColor: Colors.transparent,
+                            backgroundColor: Colors.green,
                             icon: Icon(Icons.home),
                             label: "Home",
                         ),
@@ -75,6 +144,11 @@ class _ActualPageState extends State<ActualPage> {
                             backgroundColor: Colors.transparent,
                             icon: Icon(Icons.broadcast_on_personal),
                             label: "Advertisement",
+                        ),
+                        BottomNavigationBarItem(
+                            backgroundColor: Colors.transparent,
+                            icon: Icon(Icons.add_comment),
+                            label: "Comment",
                         ),
                         BottomNavigationBarItem(
                             backgroundColor: Colors.transparent,
@@ -101,9 +175,9 @@ class _ActualPageState extends State<ActualPage> {
                                     _selectedIndex = index;
                                 });
 
-                                Navigator.pushReplacement(
+                                Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => const ActualPage()),
+                                    MaterialPageRoute(builder: (context) => const UserPage()),
                                 );
                                 print('news');
                                 break;
@@ -141,7 +215,20 @@ class _ActualPageState extends State<ActualPage> {
                                     context,
                                     MaterialPageRoute(builder: (context) => const ActualPage()),
                                 );
-                                print('com');
+                                print('');
+                                break;
+                            }
+
+                            case 5: {
+                                setState(() {
+                                    _selectedIndex = index;
+                                });
+                                
+                                Navigator.pushReplacement(                                        
+                                    context,
+                                    MaterialPageRoute(builder: (context) => const ActualPage()),
+                                );
+                                print('');
                                 break;
                             }
                         }

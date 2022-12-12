@@ -177,7 +177,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     ),
                                     onPressed: () async {
                                         if (_registerFormKey.currentState!.validate()) {
-                                            final response = await request.post("https://web-production-19b0.up.railway.app/account/register_f/", {
+                                            final response = await request.post("http://127.0.0.1:8000/account/register_f/", {
                                             'username': username,
                                             'password1': password1,
                                             'password2': password2,
