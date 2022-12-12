@@ -176,8 +176,7 @@ class _AddLandPageState extends State<AddLandPage> {
                                                                                     onPressed: () async {
                                                                                         Navigator.pop(context);
                                                                                         Navigator.pop(context);
-                                                                                        Navigator.pop(context);
-                                                                                        Navigator.push(context, MaterialPageRoute(builder: (context) => const LandListPage()));
+                                                                                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LandListPage()));
                                                                                         final response = await request.post("https://web-production-19b0.up.railway.app/farmland/addland/", {
                                                                                             'size': '${landSize!}',
                                                                                             'plant': cropChoosen!,
