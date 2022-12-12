@@ -34,7 +34,7 @@ class _LandListPageState extends State<LandListPage> {
             'JR': 'Orange'
         };
 
-        var data = await request.get('http://localhost:8000/account/profile/json');
+        var data = await request.get('https://web-production-19b0.up.railway.app/account/profile/json');
         // convert the json data into LandList object
         List<UserLand> listLandList = [];
         for (var d in data) {
@@ -205,7 +205,7 @@ class _LandListPageState extends State<LandListPage> {
 
     void _removeItem(UserLand data, int index, datas, request) async {
         final response = await request.post(
-            "http://localhost:8000/account/remove_land_f/${datas![index].pk!}",
+            "https://web-production-19b0.up.railway.app/account/remove_land_f/${datas![index].pk!}",
             {}
         );
 

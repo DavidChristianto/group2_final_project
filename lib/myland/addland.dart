@@ -180,7 +180,7 @@ class _AddLandPageState extends State<AddLandPage> {
                                                                                             MaterialPageRoute(builder: (context) => const LandListPage()),
                                                                                             (Route route) => false
                                                                                         );
-                                                                                        final response = await request.post("http://localhost:8000/farmland/addland/", {
+                                                                                        final response = await request.post("https://web-production-19b0.up.railway.app/farmland/addland/", {
                                                                                             'size': '${landSize!}',
                                                                                             'plant': cropChoosen!,
                                                                                         });
