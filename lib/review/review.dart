@@ -107,13 +107,6 @@ class _MyReviewListState extends State<MyReviewListPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 ListTile(
-                                  leading:
-
-                                  Image.asset(
-                                    '/images/user.png',
-                                    height: 60.0,
-                                    fit: BoxFit.cover,
-                                  ),
                                   title:
                                   Text(
                                     "${userMap[snapshot.data![index].fields.user.toString()]}",
