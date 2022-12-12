@@ -139,7 +139,7 @@ class _MyFormPageState extends State<MyFormPage> {
                         }
                         Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => const show_advert()),
+                          MaterialPageRoute(builder: (context) => const show_advert_user()),
                           (Route route) => false
                         );
                       },
