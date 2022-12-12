@@ -6,7 +6,8 @@ import 'package:ariculture/account/register.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:ariculture/main.dart';
-import 'package:ariculture/page/comment.dart';
+import 'package:ariculture/homepage/page/comment.dart';
+import 'package:ariculture/homepage/page/createcomment.dart';
 
 class ActualPage extends StatefulWidget {
   const ActualPage({super.key});
@@ -16,7 +17,7 @@ class ActualPage extends StatefulWidget {
 }
 
 class _ActualPageState extends State<ActualPage> {
-  int _selectedIndex = 1;
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -133,8 +134,13 @@ class _ActualPageState extends State<ActualPage> {
               ),
               BottomNavigationBarItem(
                 backgroundColor: Colors.transparent,
-                icon: Icon(Icons.add_comment),
+                icon: Icon(Icons.comment),
                 label: "Comment",
+              ),
+              BottomNavigationBarItem(
+                backgroundColor: Colors.transparent,
+                icon: Icon(Icons.add_comment),
+                label: "Add Comment",
               ),
             ],
             onTap: (index) {
@@ -205,6 +211,20 @@ class _ActualPageState extends State<ActualPage> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => const CommentPage()),
+                    );
+                    print('com');
+                    break;
+                  }
+                case 5:
+                  {
+                    setState(() {
+                      _selectedIndex = index;
+                    });
+
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AddCommentPage()),
                     );
                     print('com');
                     break;

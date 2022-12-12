@@ -7,8 +7,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:ariculture/main.dart';
 import 'package:ariculture/actual.dart';
-import 'package:ariculture/model/commentmodel.dart';
-import 'package:ariculture/page/createcomment.dart';
+import 'package:ariculture/homepage/model/commentmodel.dart';
+import 'package:ariculture/homepage/page/createcomment.dart';
 
 class CommentPage extends StatefulWidget {
   const CommentPage({super.key});
@@ -25,7 +25,7 @@ class _CommentPageState extends State<CommentPage> {
     var data =
         await request.get('https://web-production-19b0.up.railway.app/get/');
 
-    print(data);
+    
 
     // convert the json data into ToDo object
     List<Comment> listComment = [];

@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:ariculture/model/advert.dart';
+import 'package:ariculture/homepage/model/advert.dart';
 import 'package:ariculture/drawer.dart';
 
 class Show_advert_user extends StatefulWidget {

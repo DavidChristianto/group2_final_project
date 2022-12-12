@@ -2,7 +2,7 @@ import 'package:ariculture/actual.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:ariculture/page/comment.dart';
+import 'package:ariculture/homepage/page/comment.dart';
 
 class AddCommentPage extends StatefulWidget {
   const AddCommentPage({super.key});
@@ -30,10 +30,10 @@ class _AddCommentPageState extends State<AddCommentPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add Reccomendation'),
-        backgroundColor: Colors.lightGreen.shade300,
+        backgroundColor: Color.fromARGB(255, 97, 134, 255),
       ),
       // Form
-      backgroundColor: Colors.lightGreen.shade100,
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -108,7 +108,7 @@ class _AddCommentPageState extends State<AddCommentPage> {
                   ),
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      print("apapa");
+                      
                       final response = await request.post(
                           'https://web-production-19b0.up.railway.app/save_comment_f/',
                           {
