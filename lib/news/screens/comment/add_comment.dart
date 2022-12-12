@@ -1,7 +1,7 @@
-import 'package:ariculture/screens/comment/display_feedback.dart';
+import 'package:ariculture/news/screens/comment/display_feedback.dart';
 import 'package:flutter/material.dart';
-import 'package:ariculture/screens/home_screen.dart';
-import 'package:ariculture/screens/navpage.dart';
+import 'package:ariculture/news/screens/home_screen.dart';
+import 'package:ariculture/news/screens/navpage.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 

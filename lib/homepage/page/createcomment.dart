@@ -1,4 +1,4 @@
-import 'package:ariculture/actual.dart';
+import 'package:ariculture/homepage/page/actual.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -116,6 +116,9 @@ class _AddCommentPageState extends State<AddCommentPage> {
                             'comment': _comment,
                           });
                       clearText();
+
+                      Navigator.pop(context);
+
                     }
                   },
                   child: const Text(

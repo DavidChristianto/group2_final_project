@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ariculture/screens/comment/display_feedback.dart';
-import 'package:ariculture/screens/home_screen.dart';
+import 'package:ariculture/news/screens/comment/display_feedback.dart';
+import 'package:ariculture/news/screens/home_screen.dart';
 
-import 'package:ariculture/screens/comment/add_comment.dart';
+import 'package:ariculture/news/screens/comment/add_comment.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});

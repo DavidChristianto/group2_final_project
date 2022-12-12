@@ -8,15 +8,22 @@ import 'dart:convert';
 import 'package:ariculture/main.dart';
 import 'package:ariculture/account/profile.dart';
 
-class ActualPage extends StatefulWidget {
-  const ActualPage({super.key});
+import 'package:ariculture/myland/landlist.dart';
+import 'package:ariculture/news/screens/navpage.dart';
+import 'package:ariculture/review/review.dart';
+import 'package:ariculture/Advertisement/Page/show_advert.dart';
+import 'package:ariculture/homepage/page/comment.dart';
 
-  @override
-  State<ActualPage> createState() => _ActualPageState();
+class ActualPage extends StatefulWidget {
+    const ActualPage({super.key});
+
+    @override
+    State<ActualPage> createState() => _ActualPageState();
 }
 
 class _ActualPageState extends State<ActualPage> {
-  int _selectedIndex = 0;
+
+    int _selectedIndex = 0;
 
     @override
     Widget build(BuildContext context) {
@@ -35,8 +42,13 @@ class _ActualPageState extends State<ActualPage> {
                 automaticallyImplyLeading: false,
                 actions: [
                     IconButton(
-                        onPressed: () {
-                            
+                        onPressed: () async {
+                            final logout = await request.logout('https://web-production-19b0.up.railway.app/account/logout_user_f/');
+                            print(logout);
+                            print(request.loggedIn);
+                            user = '';
+                            userMap = {};
+                            Navigator.pop(context);
                         },
                         icon: Icon(
                             Icons.logout,
@@ -87,16 +99,11 @@ class _ActualPageState extends State<ActualPage> {
                     Container(
                         margin: const EdgeInsets.all(20),
                         child: ElevatedButton(
-                            onPressed: () async {
-                                print('before');
-                                final logout = await request.logout('https://web-production-19b0.up.railway.app/account/logout_user_f/');
-                                print('after');
-                                print(logout);
-                                print(request.loggedIn);
-
-                                Navigator.pop(context);
-
-
+                            onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => const LandListPage()),
+                                );
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xffd3462c),
@@ -151,8 +158,8 @@ class _ActualPageState extends State<ActualPage> {
                         ),
                         BottomNavigationBarItem(
                             backgroundColor: Colors.transparent,
-                            icon: Icon(Icons.add_comment),
-                            label: "Comment",
+                            icon: Icon(Icons.people),
+                            label: "Meet",
                         ),
                     ],
                     onTap: (index) {
@@ -162,25 +169,21 @@ class _ActualPageState extends State<ActualPage> {
                                     _selectedIndex = index;
                                 });
 
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ActualPage()),
-                    );
-                    print('home');
-                    break;
-                  }
-                case 1:
-                  {
-                    setState(() {
-                      _selectedIndex = index;
-                    });
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => const ActualPage()),
+                                );
+                                break;
+                            }
+                            case 1: {
+                                setState(() {
+                                    _selectedIndex = index;
+                                });
 
                                 Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => const UserPage()),
+                                    MaterialPageRoute(builder: (context) => const MainPage()),
                                 );
-                                print('news');
                                 break;
                             }
                             case 2: {
@@ -188,25 +191,21 @@ class _ActualPageState extends State<ActualPage> {
                                     _selectedIndex = index;
                                 });
 
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ActualPage()),
-                    );
-                    print('rev');
-                    break;
-                  }
-                case 3:
-                  {
-                    setState(() {
-                      _selectedIndex = index;
-                    });
-
-                                Navigator.pushReplacement(
+                                Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => const ActualPage()),
+                                    MaterialPageRoute(builder: (context) => const MyReviewListPage()),
                                 );
-                                print('adv');
+                            break;
+                            }
+                            case 3: {
+                                setState(() {
+                                    _selectedIndex = index;
+                                });
+
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => const show_advert()),
+                                );
                                 break;
                                 }
                             case 4: {
@@ -214,11 +213,10 @@ class _ActualPageState extends State<ActualPage> {
                                     _selectedIndex = index;
                                 });
                                 
-                                Navigator.pushReplacement(                                        
+                                Navigator.push(                                        
                                     context,
-                                    MaterialPageRoute(builder: (context) => const ActualPage()),
+                                    MaterialPageRoute(builder: (context) => const CommentPage()),
                                 );
-                                print('');
                                 break;
                             }
 
@@ -227,11 +225,10 @@ class _ActualPageState extends State<ActualPage> {
                                     _selectedIndex = index;
                                 });
                                 
-                                Navigator.pushReplacement(                                        
+                                Navigator.push(                                        
                                     context,
-                                    MaterialPageRoute(builder: (context) => const ActualPage()),
+                                    MaterialPageRoute(builder: (context) => const UserPage()),
                                 );
-                                print('');
                                 break;
                             }
                         }

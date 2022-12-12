@@ -4,28 +4,37 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:ariculture/main.dart';
 import 'dart:convert';
 
-class LoginPage extends StatefulWidget {
-    const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+    const RegisterPage({super.key});
 
     @override
-    State<LoginPage> createState() => _LoginPageState();
+    State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-    final _loginFormKey = GlobalKey<FormState>();
+class _RegisterPageState extends State<RegisterPage> {
+    final _registerFormKey = GlobalKey<FormState>();
 
     String username = "";
-    String password = "";
+    String password1 = "";
+    String password2 = "";
+
+    bool isPasswordVisible = false;
+
+    void togglePasswordView() {
+        setState(() {
+        isPasswordVisible = !isPasswordVisible;
+        });
+    }
 
     @override
     Widget build(BuildContext context) {
         final request = context.watch<CookieRequest>();
         return Scaffold(
             appBar : AppBar(
-                title: Text('Login Page'),
+                title: Text('Register Page'),
             ),
             body: Form(
-                key: _loginFormKey,
+                key: _registerFormKey,
                 child: SingleChildScrollView(
                     child: Container(
                         padding: const EdgeInsets.all(20.0),
@@ -41,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
                                             icon: const Icon(Icons.people),
                                             // Added a circular border to make it neater
                                             border: OutlineInputBorder(
-                                                borderRadius: BorderRadius.circular(5.0),
+                                                borderRadius: BorderRadius.circular(10.0),
                                             ),
                                         ),
                                         // Added behavior when name is typed 
@@ -72,22 +81,34 @@ class _LoginPageState extends State<LoginPage> {
                                             hintText: "Password",
                                             labelText: "Password",
                                             // Add icons to make it more intuitive
-                                            icon: const Icon(Icons.people),
+                                            icon: const Icon(Icons.password),
                                             // Added a circular border to make it neater
                                             border: OutlineInputBorder(
-                                                borderRadius: BorderRadius.circular(5.0),
+                                                borderRadius: BorderRadius.circular(10.0),
                                             ),
+                                            suffixIcon: IconButton(
+                                                icon: Icon(
+                                                    isPasswordVisible
+                                                    ? Icons.visibility_off
+                                                    : Icons.visibility,
+                                                    color: Theme.of(context).primaryColorDark,
+                                                ),
+                                                onPressed: () {
+                                                    togglePasswordView();
+                                                }
+                                            )
                                         ),
+                                        obscureText: !isPasswordVisible,
                                         // Added behavior when name is typed 
                                         onChanged: (String? value) {
                                             setState(() {
-                                                password = value!;
+                                                password1 = value!;
                                             });
                                         },
                                         // Added behavior when data is saved
                                         onSaved: (String? value) {
                                             setState(() {
-                                                password = value!;
+                                                password1 = value!;
                                             });
                                         },
                                         // Validator as form validation
@@ -99,25 +120,73 @@ class _LoginPageState extends State<LoginPage> {
                                         },
                                     )
                                 ),
+                                Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: TextFormField(
+                                        decoration: InputDecoration(
+                                            hintText: "Repeat Password",
+                                            labelText: "Repeat Password",
+                                            // Add icons to make it more intuitive
+                                            icon: const Icon(Icons.repeat),
+                                            // Added a circular border to make it neater
+                                            border: OutlineInputBorder(
+                                                borderRadius: BorderRadius.circular(10.0),
+                                            ),
+                                            suffixIcon: IconButton(
+                                                icon: Icon(
+                                                    isPasswordVisible
+                                                    ? Icons.visibility_off
+                                                    : Icons.visibility,
+                                                    color: Theme.of(context).primaryColorDark,
+                                                ),
+                                                onPressed: () {
+                                                    togglePasswordView();
+                                                }
+                                            )
+                                        ),
+                                        obscureText: !isPasswordVisible,
+                                        // Added behavior when name is typed 
+                                        onChanged: (String? value) {
+                                            setState(() {
+                                                password2 = value!;
+                                            });
+                                        },
+                                        // Added behavior when data is saved
+                                        onSaved: (String? value) {
+                                            setState(() {
+                                                password2 = value!;
+                                            });
+                                        },
+                                        // Validator as form validation
+                                        validator: (String? value) {
+                                            if (value == null || value.isEmpty) {
+                                                return 'Repeat your password!';
+                                            }
+                                            return null;
+                                        },
+                                    )
+                                ),
                                 SizedBox(height: 16),
                                 TextButton(
                                     child: const Text(
-                                        "Login",
+                                        "Register",
                                         style: TextStyle(color: Colors.white),
                                     ),
                                     style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(Colors.blue),
+                                    backgroundColor: MaterialStateProperty.all(Colors.green),
                                     ),
                                     onPressed: () async {
-                                        if (_loginFormKey.currentState!.validate()) {
-                                            final response = await request.login("https://web-production-19b0.up.railway.app/account/login_f/", {
+                                        if (_registerFormKey.currentState!.validate()) {
+                                            final response = await request.post("https://web-production-19b0.up.railway.app/account/register_f/", {
                                             'username': username,
-                                            'password': password,
+                                            'password1': password1,
+                                            'password2': password2,
                                         });
-                                        if (request.loggedIn) {
+                                        
+                                        if (response['status']) {
                                             Navigator.pop(context);
                                         } else {
-                                            print(request.loggedIn);
+                                            print('nopers');
                                         }
                                         }
                                     }

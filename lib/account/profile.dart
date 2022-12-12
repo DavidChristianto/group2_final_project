@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:ariculture/main.dart';
 import 'dart:convert';
-import 'package:ariculture/actual.dart';
+import 'package:ariculture/homepage/page/actual.dart';
 import 'package:ariculture/account/model/user.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
@@ -18,7 +18,7 @@ class UserPage extends StatefulWidget {
 class _UserPage extends State<UserPage> {
     Future<List<User>> fetchUser() async {
         final request = context.watch<CookieRequest>();
-        final data = await request.get('http://127.0.0.1:8000/account/json/');
+        final data = await request.get('https://web-production-19b0.up.railway.app/account/json/');
 
         List<User> listUser = [];
         for (var d in data) {

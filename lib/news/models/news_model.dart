@@ -24,7 +24,7 @@ class NewsData {
         "herdwilia ramadanti",
         "Rice terraces near Jatiluwih, Bali, Indonesia.Agriculture sector has an important role in  national economic development structure. We know that agriculture in Indonesia is very spacious and potential. Without agriculture human being can not live, any sector will be paralyzed, and it means a big problem for our country. Agriculture has a role as a provider job opportunity, contributor for national income, and GDP contributor in Indonesia. But in a fact, agriculture sector in Indonesia is still weak and there are too many challenges for the agricultural sector. Those challenges become a hard job for all of us if we want agriculture to drive improvements in public welfare and can force national development.  We need agricultural revolution to make Indonesia become a great nation.",
         "2020-04-06",
-        "https://iukl.edu.my/wp-content/uploads/2019/12/bachelor-of-agricultural-science-plantation-management.jpg"),
+        "https://media.clientearth.org/cache/7/f/4/9/6/d/7f496d8717fa60c638aed171b984c630654be7fc.jpg"),
     NewsData(
         "Agricultural Sector of Indonesia",
         "Indonesia-Investments",
@@ -36,7 +36,7 @@ class NewsData {
         "Statista Research Department",
         "Indonesia is one of the world's largest producers and exporters of agricultural products, supplying important commodities such as palm oil, natural rubber, cocoa, coffee, rice, and spices to the rest of the world. In the past decades, the agricultural industry is also the largest sector of employment in the country. However, the share of the Indonesian agricultural sector's GDP has been decreasing as the country shifts towards industrialization.",
         "2022-11-11",
-        "https://meltingmuzungu.files.wordpress.com/2020/07/people_working_in_agriculture_in_rwanda.jpg?w=1024"),
+        "https://static01.nyt.com/images/2022/06/12/nyregion/12hudsonvalleyfarms-promo/09hudsonvalleyfarms-promo-videoSixteenByNine3000.jpg"),
   ];
 
   static List<NewsData> recentNewsData = [
@@ -45,13 +45,13 @@ class NewsData {
         "Quincieu, Eric",
         "Despite increasing food crop production, food security is challenged in the medium term by declining irrigation and logistics chain infrastructure. Food security would also be enhanced through an increase of higher value cropping, greater commercialization, and allowing land leasing to gain economies of scale in farm sizes, and facilitating re-investment by small farmers. The government of Indonesia’s 2015–2019 National Medium-Term Development Plan (RPJMN) highlights two distinct roles of the agriculture sector which are to (i) increase rice production for food security, and (ii) develop higher value cropping to improve rural livelihoods.",
         "2022-11-20",
-        "https://farmingfirst.org/wordpress/wp-content/uploads/2022/03/Golden-Sunland-photo-by-Susann-Tischendorf_4-scaled.jpg"),
+        "https://images.thewest.com.au/publication/B881988110Z/1630402638175_G9R3EUEAR.2-2.jpg"),
     NewsData(
         "Agriculture Opportunity in Indonesia",
         "Market Research Indonesia",
         "As the fourth-largest global producer of agricultural products, Indonesia's farming practice plays a vital part in the country's development. The sector contributes to over a third of the nationwide workforce and extensive shares to the overall gross domestic product (GDP). The agriculture sector takes up to 30 percent of the country's available land, with most of it being large-scale plantations of palm oil. Other common commodities acting as essential export products are rice, soybeans, corn, fruits, and vegetables. In recent years, the Indonesian government has emphasized agricultural self-sufficiency on several commodities stapled to the country, such as rice. The country still imports rice from neighboring countries to secure the domestic rice supply catering to the significant per capita consumption. Therefore, governmental programs have since covered revitalization programs for individual farmers to push higher production.",
         "2022-11-30",
-        "https://www.eastasiaforum.org/wp-content/uploads/2018/08/2017-09-29T052035Z_1400289886_RC140F868530_RTRMADP_3_INDONESIA-VOLCANO.jpg"),
+        "https://i.pinimg.com/originals/3a/80/80/3a8080d8a975b42fc3635ea302152f13.jpg"),
     NewsData(
         "Indonesian Commodity Prospects ",
         "Cekindo",

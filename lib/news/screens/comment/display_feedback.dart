@@ -1,9 +1,9 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:ariculture/screens/comment/model/feedback_model.dart';
-import 'package:ariculture/screens/comment/fetch.dart';
+import 'package:ariculture/news/screens/comment/model/feedback_model.dart';
+import 'package:ariculture/news/screens/comment/fetch.dart';
 import 'package:flutter/material.dart';
-import 'package:ariculture/screens/home_screen.dart';
+import 'package:ariculture/news/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 

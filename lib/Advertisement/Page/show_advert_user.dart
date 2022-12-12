@@ -1,8 +1,8 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:ariculture/homepage/model/advert.dart';
-import 'package:ariculture/drawer.dart';
+import 'package:ariculture/Advertisement/Model/advert.dart';
+import 'package:ariculture/Advertisement/Page/advert_create.dart';
 
 class Show_advert_user extends StatefulWidget {
     const Show_advert_user({super.key});
@@ -15,11 +15,10 @@ class _Show_advert_user_state extends State<Show_advert_user> {
     Future<List<Advert>> fetchAdvert() async {
         var url = Uri.parse('https://web-production-19b0.up.railway.app/advertisement/json/');
         var response = await http.get(
-        url,
-        headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-        },
+            url,
+            headers: {
+                "Content-Type": "application/json",
+            },
         );
 
         // decode the response into the json form
@@ -39,9 +38,20 @@ class _Show_advert_user_state extends State<Show_advert_user> {
         return Scaffold(
             appBar: AppBar(
                 title: Text('Data'),
+                actions: [
+                    IconButton(
+                        onPressed: () async {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const MyFormPage()),
+                            );
+                        },
+                        icon: Icon(
+                            Icons.logout,
+                            color: Colors.white,
+                    ))
+                ],
             ),
-
-            drawer: drawer(),
             body: FutureBuilder(
                 future: fetchAdvert(),
                  builder: (context, AsyncSnapshot snapshot){

@@ -3,7 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:ariculture/main.dart';
 import 'dart:convert';
-import 'package:ariculture/actual.dart';
+import 'package:ariculture/homepage/page/actual.dart';
+import 'package:ariculture/account/register.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -188,7 +189,7 @@ class _LoginPageState extends State<LoginPage> {
                                                                     backgroundColor: MaterialStateProperty.all(Colors.transparent),
                                                                     ),
                                                                     onPressed: () async {
-                                                                        Navigator.pushNamed(context, '/register');
+                                                                        Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterPage()));
                                                                     }
                                                                 )
                                                             ),
@@ -208,13 +209,9 @@ class _LoginPageState extends State<LoginPage> {
                                                                             'password': password,
                                                                         });
                                                                         if (request.loggedIn) {
-                                                                            print("before");
 
                                                                             final data = await request.get("https://web-production-19b0.up.railway.app/account/json/");
 
-                                                                            print("after");
-
-                                          userMap = {};
                                                                             userMap = {};
 
                                                                             for (var d in data) {

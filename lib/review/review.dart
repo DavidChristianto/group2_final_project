@@ -1,15 +1,13 @@
+import 'package:ariculture/review/model/modelsReview.dart';
+import 'package:ariculture/review/form.dart';
+import 'package:ariculture/review/review.dart';
+import 'package:ariculture/main.dart';
 
-import 'package:flutter/material.dart';
-import 'package:review/form.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:review/main.dart';
-import 'package:review/drawer.dart';
-import 'package:review/modelsReview.dart';
 import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
-import 'package:review/user.dart';
-
+import 'package:flutter/material.dart';
 
 
 class MyReviewListPage extends StatefulWidget {
@@ -24,14 +22,12 @@ class _MyReviewListState extends State<MyReviewListPage> {
 
   Future<List<Review>> fetchModel() async {
     var url = Uri.parse('https://web-production-19b0.up.railway.app/review/json/');
-    print('fetching');
     var response = await http.get(
       url,
       headers: {
         "Content-Type": "application/json",
       },
     );
-    print('fetched!');
 
     var data = jsonDecode(utf8.decode(response.bodyBytes));
 
@@ -42,7 +38,6 @@ class _MyReviewListState extends State<MyReviewListPage> {
         listReview.add(Review.fromJson(d));
       }
     }
-    print('parsed');
     return listReview;
   }
 
@@ -52,7 +47,6 @@ class _MyReviewListState extends State<MyReviewListPage> {
       appBar: AppBar(
         title: const Text('Review Page'),
       ),
-      drawer: drawer(),
       body: FutureBuilder(
           future: fetchModel(),
           builder: (context, AsyncSnapshot snapshot) {
@@ -106,7 +100,7 @@ class _MyReviewListState extends State<MyReviewListPage> {
                                   leading:
 
                                   Image.asset(
-                                    'assets/images/gambar.png',
+                                    'assets/images/user.png',
                                     height: 60.0,
                                     fit: BoxFit.cover,
                                   ),

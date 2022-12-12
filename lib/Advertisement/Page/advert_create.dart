@@ -1,11 +1,11 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:ariculture/model/advert.dart';
-import 'package:ariculture/drawer.dart';
+import 'package:ariculture/Advertisement/model/advert.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:ariculture/page/show_advert.dart';
+import 'package:ariculture/Advertisement/page/show_advert.dart';
+import 'package:ariculture/Advertisement/page/show_advert_user.dart';
 
 
 class MyFormPage extends StatefulWidget {
@@ -32,7 +32,6 @@ class _MyFormPageState extends State<MyFormPage> {
             appBar: AppBar(
               title: Text('Form'),
             ),
-            drawer: drawer(),
               
             body: Form(
               key: _formKey,
@@ -138,9 +137,10 @@ class _MyFormPageState extends State<MyFormPage> {
                                 'ad_type' : _adtype
                             });
                         }
-                        Navigator.pushReplacement(
+                        Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => const show_advert()),
+                          MaterialPageRoute(builder: (context) => const Show_advert_user()),
+                          (Route route) => false
                         );
                       },
                       ),
@@ -149,10 +149,7 @@ class _MyFormPageState extends State<MyFormPage> {
                         style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue)),
                         onPressed: () {
                         // Routing the menu to the form page
-                         Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(builder: (context) => const show_advert()),
-                            );
+                         Navigator.pop(context);
                         },
                       ),
                         

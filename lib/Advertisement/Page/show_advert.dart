@@ -1,10 +1,11 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:ariculture/model/advert.dart';
-import 'package:ariculture/drawer.dart';
+import 'package:ariculture/Advertisement/Model/advert.dart';
+import 'package:ariculture/Advertisement/Page/show_advert_user.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
+
 
 class show_advert extends StatefulWidget {
     const show_advert({super.key});
@@ -32,9 +33,21 @@ class _show_advert extends State<show_advert> {
         return Scaffold(
             appBar: AppBar(
                 title: Text('Data'),
+                actions: [
+                    IconButton(
+                        onPressed: () async {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const Show_advert_user()),
+                            );
+                        },
+                        icon: Icon(
+                            Icons.people,
+                            color: Colors.white,
+                    ))
+                ],
             ),
 
-            drawer: drawer(),
             body: FutureBuilder(
                 future: fetchAdvert(),
                  builder: (context, AsyncSnapshot snapshot){

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ariculture/models/news_model.dart';
+import 'package:ariculture/news/models/news_model.dart';
 import '../screens/details_screen.dart';
 
 class NewsListTile extends StatefulWidget {

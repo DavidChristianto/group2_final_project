@@ -6,7 +6,7 @@ import 'package:ariculture/account/register.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:ariculture/main.dart';
-import 'package:ariculture/actual.dart';
+import 'package:ariculture/homepage/page/actual.dart';
 import 'package:ariculture/homepage/model/commentmodel.dart';
 import 'package:ariculture/homepage/page/createcomment.dart';
 
@@ -34,8 +34,6 @@ class _CommentPageState extends State<CommentPage> {
         listComment.add(Comment.fromJson(d));
       }
     }
-
-    print(listComment);
 
     return listComment;
   }
@@ -109,139 +107,22 @@ class _CommentPageState extends State<CommentPage> {
                             ));
                   }
                 }
-              }),
-          //NA
+          }),
         ),
-        bottomNavigationBar: Container(
-          margin: EdgeInsets.all(12),
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: BottomNavigationBar(
-            elevation: 0.0,
-            currentIndex: _selectedIndex,
-            items: [
-              BottomNavigationBarItem(
-                backgroundColor: Colors.transparent,
-                icon: Icon(Icons.home),
-                label: "Home",
-              ),
-              BottomNavigationBarItem(
-                backgroundColor: Colors.transparent,
-                icon: Icon(Icons.newspaper),
-                label: "News",
-              ),
-              BottomNavigationBarItem(
-                backgroundColor: Colors.transparent,
-                icon: Icon(Icons.border_color),
-                label: "Review",
-              ),
-              BottomNavigationBarItem(
-                backgroundColor: Colors.transparent,
-                icon: Icon(Icons.broadcast_on_personal),
-                label: "Advertisement",
-              ),
-              BottomNavigationBarItem(
-                backgroundColor: Colors.transparent,
-                icon: Icon(Icons.comment),
-                label: "Comment",
-              ),
-              BottomNavigationBarItem(
-                backgroundColor: Colors.transparent,
-                icon: Icon(Icons.add_comment),
-                label: "Create Comment",
-              ),
-            ],
-            onTap: (index) {
-              switch (index) {
-                case 0:
-                  {
-                    setState(() {
-                      _selectedIndex = index;
-                    });
-
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ActualPage()),
-                    );
-                    print('home');
-                    break;
-                  }
-                case 1:
-                  {
-                    setState(() {
-                      _selectedIndex = index;
-                    });
-
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ActualPage()),
-                    );
-                    print('news');
-                    break;
-                  }
-                case 2:
-                  {
-                    setState(() {
-                      _selectedIndex = index;
-                    });
-
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ActualPage()),
-                    );
-                    print('rev');
-                    break;
-                  }
-                case 3:
-                  {
-                    setState(() {
-                      _selectedIndex = index;
-                    });
-
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ActualPage()),
-                    );
-                    print('adv');
-                    break;
-                  }
-                case 4:
-                  {
-                    setState(() {
-                      _selectedIndex = index;
-                    });
-
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const CommentPage()),
-                    );
-                    print('com');
-                    break;
-                  }
-                case 5:
-                  {
-                    setState(() {
-                      _selectedIndex = index;
-                    });
-
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const AddCommentPage()),
-                    );
-                    print('com');
-                    break;
-                  }
-              }
-            },
-          ),
-        ));
+        floatingActionButton: Padding(
+        padding: EdgeInsets.only(left: 30),
+        child:
+        FloatingActionButton(
+          onPressed: () =>
+          {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AddCommentPage()),
+            )
+          },
+          child: Icon(Icons.add),
+        ),
+      ),
+      );
   }
 }

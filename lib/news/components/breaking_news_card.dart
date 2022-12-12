@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ariculture/models/news_model.dart';
-import 'package:ariculture/screens/details_screen.dart';
+import 'package:ariculture/news/models/news_model.dart';
+import 'package:ariculture/news/screens/details_screen.dart';
 
 class BreakingNewsCard extends StatefulWidget {
   BreakingNewsCard(this.data, {Key? key}) : super(key: key);

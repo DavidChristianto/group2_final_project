@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ariculture/models/news_model.dart';
+import 'package:ariculture/news/models/news_model.dart';
 
 class DetailsScreen extends StatefulWidget {
   DetailsScreen(this.data, {Key? key}) : super(key: key);

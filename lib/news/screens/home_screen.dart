@@ -1,8 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:ariculture/components/breaking_news_card.dart';
-import 'package:ariculture/components/news_list_tile.dart';
-import 'package:ariculture/models/news_model.dart';
+import 'package:ariculture/news/components/breaking_news_card.dart';
+import 'package:ariculture/news/components/news_list_tile.dart';
+import 'package:ariculture/news/models/news_model.dart';
+
+
 
 
 class HomeScreen extends StatefulWidget {

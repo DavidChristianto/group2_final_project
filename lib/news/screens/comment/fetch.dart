@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:ariculture/screens/comment/model/feedback_model.dart';
+import 'package:ariculture/news/screens/comment/model/feedback_model.dart';
 import 'package:http/http.dart' as http;
 
 

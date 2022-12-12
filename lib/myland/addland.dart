@@ -161,7 +161,6 @@ class _AddLandPageState extends State<AddLandPage> {
                                                                             ],
                                                                         ),
                                                                         SizedBox(height: 10),
-                                                                        // TODO: Display the information obtained from the form
                                                                         ButtonBar(
                                                                             buttonMinWidth: 100,
                                                                             alignment: MainAxisAlignment.spaceEvenly,
@@ -175,11 +174,9 @@ class _AddLandPageState extends State<AddLandPage> {
                                                                                 ),
                                                                                 TextButton(
                                                                                     onPressed: () async {
-                                                                                        Navigator.pushAndRemoveUntil(
-                                                                                            context,
-                                                                                            MaterialPageRoute(builder: (context) => const LandListPage()),
-                                                                                            (Route route) => false
-                                                                                        );
+                                                                                        Navigator.pop(context);
+                                                                                        Navigator.pop(context);
+                                                                                        Navigator.push(context, MaterialPageRoute(builder: (context) => const LandListPage()));
                                                                                         final response = await request.post("https://web-production-19b0.up.railway.app/farmland/addland/", {
                                                                                             'size': '${landSize!}',
                                                                                             'plant': cropChoosen!,

@@ -1,17 +1,17 @@
 import 'dart:io';
 
-import 'package:review/main.dart';
+import 'package:ariculture/review/model/modelsReview.dart';
+import 'package:ariculture/review/form.dart';
+import 'package:ariculture/review/review.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:review/drawer.dart';
-import 'package:review/modelsReview.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:review/review.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
 
-List<Review> data =[];
+List<Review> data = [];
 class MyFormPage extends StatefulWidget {
   const MyFormPage({super.key});
 
@@ -37,7 +37,6 @@ class _MyFormPageState extends State<MyFormPage>{
         appBar: AppBar(
           title: Text('Add Review'),
         ),
-        drawer: drawer(),
         body: Form(key: _formKey, child: SingleChildScrollView(
           child: Container(
 
@@ -94,10 +93,7 @@ class _MyFormPageState extends State<MyFormPage>{
                                 'review_text': text_review,
 
                               });
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(builder: (context) => const MyReviewListPage()),
-                              );
+                              Navigator.pop(context);
                             }
                           },
                         ),
@@ -112,10 +108,7 @@ class _MyFormPageState extends State<MyFormPage>{
                           backgroundColor: MaterialStateProperty.all(Colors.blue),
                         ),
                         onPressed: () async {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(builder: (context) => const MyReviewListPage()),
-                          );
+                          Navigator.pop(context);
                         },
                       ),
                     ],
