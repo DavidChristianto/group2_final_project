@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:ariculture/drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:ariculture/login.dart';
-import 'package:ariculture/register.dart';
+import 'package:ariculture/account/login.dart';
+import 'package:ariculture/account/register.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:ariculture/actual.dart';
+
+String user = '';
+Map <String, String> userMap = {};
 
 
+String user = '';
+Map<String,String> userMap= {};
 void main() {
   runApp(const MyApp());
 }
@@ -22,10 +31,10 @@ class MyApp extends StatelessWidget {
             child: MaterialApp(
                 title: 'Ariculture Home Page',
                 theme: ThemeData(
-                    primarySwatch: Colors.blue,
-                    brightness: Brightness.dark,
+                    primarySwatch: Colors.green,
+                    brightness: Brightness.light,
                 ),
-                home: const MyHomePage(title: 'Ariculture Home Page'),
+                home: LoginPage(),
                 routes: {
                     "/login": (BuildContext context) => const LoginPage(),
                     "/register": (BuildContext context) => const RegisterPage(),
@@ -54,19 +63,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
@@ -82,6 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
+      drawer: drawer(),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -126,17 +123,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.pushNamed(context, '/register');
               },
             ),
-            TextButton(
-              child: const Text(
-                "Test",
-                style: TextStyle(color: Colors.white),
-              ),
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.blue),
-              ),
-              onPressed: () {
-                print(request.loggedIn);
-              },
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headline4,
             ),
           ],
         ),
@@ -144,3 +133,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+
+
